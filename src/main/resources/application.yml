@@ -2,5 +2,5 @@ spring:
   data:
     mongodb:
       database: Book
-      host: mrdevopsmongodb 
+      host: mongodblink 
       port: 27017
