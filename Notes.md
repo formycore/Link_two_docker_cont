@@ -49,6 +49,7 @@ docker run -p 8080:8080 --name springboot-mongodb --link mongodblink:mongo -d sp
 - select json
 - select post 
 - in the bar type 
+```
 {
         "id": 1,
         "name": "Think and Grow Rich",
@@ -59,6 +60,7 @@ docker run -p 8080:8080 --name springboot-mongodb --link mongodblink:mongo -d sp
         "name": "Do Epic Shit",
         "authorName": "Ankur Warikoo"
     }
+```
 - now select get (click on send)
 #### now checking from inside the db container
 ```
