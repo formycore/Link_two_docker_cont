@@ -7,9 +7,9 @@
 ```docker images ls```
 ```docker images```
 ### Run the container
-```docker run -d --name mongodblink -p 27017:27017 mongo:latest
-# this name mongodblink should be same as src > main > resources > application.yml > host 
-```
+```docker run -d --name mongodblink -p 27017:27017 mongo:latest```
+```this name mongodblink should be same as src > main > resources > application.yml > host```
+
 
 ### Now Dockerize our application
 ```
