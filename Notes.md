@@ -35,4 +35,56 @@ ENTRYPOINT ["java","-jar","springboot-mongo-docker.jar"]
 ### Check the docker containers
 ```docker ps```
 
+### Now run our container
+```
+docker run -p 8080:8080 --name <any name> --link <running_db_container_name>:<docker_image_of_this_container> -d <docker image>
 
+docker run -p 8080:8080 --name springboot-mongodb --link mongodblink:mongo -d springboot-mongodb:1.0
+```
+### with postman we can get,post the info to the database server 
+- select get
+- enter the URL:8080/book
+- select body
+- select raw
+- select json
+- select post 
+- in the bar type 
+{
+        "id": 1,
+        "name": "Think and Grow Rich",
+        "authorName": "Nepolian Hill"
+    },
+     {
+        "id": 2,
+        "name": "Do Epic Shit",
+        "authorName": "Ankur Warikoo"
+    }
+- now select get (click on send)
+#### now checking from inside the db container
+```
+docker exec -it <db_container_name> /bin/bash
+# Inside the container
+mongosh
+show dbs
+use Book
+show collections
+# to view all the books insie the container
+db.books.find().pretty()
+```
+# Now with docker-compose
+```
+version: "3"
+services:
+  mongodblink: # this is one service 
+    image: mongo:latest # this is image needs to pull
+    container_name: "mongodblink" # this container name
+    ports:
+      - 27017:27017
+  springboot-mongodb: # this is another service
+    image: springboot-mongodb:1.0 # this image is already there in the system
+    container_name: springboot-mongodb # this is container name
+    ports:
+      - 8080:8080
+    links: # this is for linking 
+      - mongodblink
+```
